@@ -21,7 +21,8 @@ set :deploy_to, "/home/deploy/garden"
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_files, ".env"
+set :passenger_restart_command, 'bundle exec passenger-config restart-app'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -33,10 +34,26 @@ set :deploy_to, "/home/deploy/garden"
 # set :keep_releases, 5
 
 namespace :deploy do
+  task :restart do
+    on roles(:app) do
+      within release_path do
+        execute :bundle, :exec, 'passenger-config', 'restart-app', '/home/deploy/garden', '--ignore-passenger-not-running'
+      end
+    end
+  end
+
   task :start do
     on roles(:app) do
       within release_path do
-        execute :bundle, :exec, :passenger, :start, '--daemonize', '--port', '8080'
+        execute :bundle, :exec, :passenger, :start, '--daemonize', '--port', '8080', '-e', 'production'
+      end
+    end
+  end
+
+  task :stop do
+    on roles(:app) do
+      within release_path do
+        execute :bundle, :exec, :passenger, :stop, '--port', '8080'
       end
     end
   end
