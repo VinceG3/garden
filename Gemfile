@@ -27,6 +27,7 @@ gem 'jquery-rails'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+gem 'capistrano-passenger'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
