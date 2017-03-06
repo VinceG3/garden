@@ -21,8 +21,7 @@ set :deploy_to, "/home/deploy/garden"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, ".env"
-set :passenger_restart_command, 'bundle exec passenger-config restart-app'
+append :linked_files, '.env', 'passenger.8080.pid', 'passenger.8080.pid.lock'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -34,10 +33,12 @@ set :passenger_restart_command, 'bundle exec passenger-config restart-app'
 # set :keep_releases, 5
 
 namespace :deploy do
+  after :publishing, :restart
+  
   task :restart do
     on roles(:app) do
       within release_path do
-        execute :bundle, :exec, 'passenger-config', 'restart-app', '/home/deploy/garden', '--ignore-passenger-not-running'
+        execute :bundle, :exec, 'passenger-config', 'restart-app', '/home/deploy/garden'
       end
     end
   end
