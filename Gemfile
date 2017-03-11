@@ -42,5 +42,6 @@ group :development do
 end
 
 gem 'opal-rails'
+gem 'opal_hot_reloader'
 gem 'opal-browser'
 gem 'hyper-react'

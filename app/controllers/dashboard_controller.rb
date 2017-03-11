@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
   def show
-    render_component
+    render_component(**base_params)
   end
 end

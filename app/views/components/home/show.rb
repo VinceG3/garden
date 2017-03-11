@@ -1,6 +1,6 @@
 module Components
   module Home
-    class Show < React::Component::Base
+    class Show < Common::BaseComponent
 
       param :say_hello_to
 
