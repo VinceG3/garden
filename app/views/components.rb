@@ -11,5 +11,6 @@ if React::IsomorphicHelpers.on_opal_client?
   OpalHotReloader.listen
 end
 
+require_tree './components/common'
 require_tree './components'
 

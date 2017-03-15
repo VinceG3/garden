@@ -10,7 +10,10 @@ module Components
       def render
         div do
           Panels::Ingest()
-          Panels::StratforEmails()
+          Panels::InfoProcess()
+          Panels::AddIdea()
+          Panels::Reminders()
+          Panels::ContextMap()
         end
       end
     end

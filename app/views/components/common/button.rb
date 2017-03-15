@@ -3,11 +3,12 @@ module Components
     class ButtonWrapper < BaseComponent
       def click_action
         HTTP.post(api_endpoint('ingest')) do |resp|
-          click_callback
+          click_callback(JSON.parse(resp.body))
         end
       end
 
-      def click_callback
+      def click_callback(resp)
+        puts resp['data']
       end
 
       def render

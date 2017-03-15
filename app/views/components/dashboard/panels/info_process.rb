@@ -1,7 +1,7 @@
 module Components
   module Dashboard
     module Panels
-      class StratforEmails < Panel
+      class InfoProcess < Panel
         before_mount do
           state.stratfor_emails! []
         end
@@ -14,7 +14,8 @@ module Components
 
         def render
           div(style: styles) do
-            "you have #{state.stratfor_emails.count} stratfor emails"
+            div {"you have #{state.stratfor_emails.count} stratfor emails"}
+            div {"hi"}
           end
         end
       end
