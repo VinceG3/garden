@@ -2,6 +2,7 @@ module Components
   module ContextMap
     class Context < Common::BaseComponent
       param :context
+      param :on_element_add
 
       def elements_style
         {
@@ -16,7 +17,10 @@ module Components
       end
 
       def add_new_element
-        InvElement(name: 'Add')
+        InvElement(
+          name: 'Add New',
+          on_element_add: params.on_element_add,
+        )
       end
 
       def render
@@ -24,7 +28,7 @@ module Components
           Topic(name: params.context['topic'])
           div(style: elements_style) do
             elements
-            add_new_element
+            add_new_element if params.context['elements'].count < 4
           end
         end
       end

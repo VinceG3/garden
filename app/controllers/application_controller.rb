@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def menu
     render_component(**base_params)
   end
-
+  
   private
 
   def base_params

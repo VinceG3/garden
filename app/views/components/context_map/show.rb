@@ -6,11 +6,8 @@ module Components
       before_mount do
         @@api_url = params.api_url
         state.context!({
-          topic: 'Self',
+          topic: '',
           elements: {
-            'Consciousness' => [],
-            'Form' => [],
-            'Goals' => [],
           }
         })
       end
@@ -25,9 +22,18 @@ module Components
         }
       end
 
+      def on_element_add(name)
+        new_context = state.context
+        new_context[:elements][name] = []
+        state.context! new_context
+      end
+
       def render
         div(style: styles) do
-          Context(context: state.context)
+          Context(
+            context: state.context,
+            on_element_add: method(:on_element_add).to_proc,
+          )
         end
       end
     end

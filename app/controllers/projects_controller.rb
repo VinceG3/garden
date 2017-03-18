@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class ProjectsController < ApplicationController
   def show
     render_component(**base_params)
   end

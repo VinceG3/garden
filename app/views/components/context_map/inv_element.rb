@@ -1,6 +1,9 @@
 module Components
   module ContextMap
     class InvElement < Common::BaseComponent
+      param :name
+      param :on_element_add, default: nil
+
       def styles
         {
           width: '118px',
@@ -18,11 +21,13 @@ module Components
       end
 
       def is_add_new?
-        params.name == 'Add'
+        params.name == 'Add New'
       end
 
       def on_click
-        alert('hi')
+        return unless is_add_new?
+        name = prompt('Name of new element')
+        params.on_element_add.call(name)
       end
 
       def render
