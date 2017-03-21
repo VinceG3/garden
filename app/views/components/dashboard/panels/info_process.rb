@@ -3,19 +3,25 @@ module Components
     module Panels
       class InfoProcess < Panel
         before_mount do
-          state.stratfor_emails! []
+          state.urls_to_read! []
         end
 
         after_mount do
-          HTTP.get(api_endpoint('stratfor_emails')) do |resp|
-            state.stratfor_emails! JSON.parse(resp.body)
+          get_data('urls_to_read') do |resp|
+            state.urls_to_read! resp.body
           end
         end
 
+        def info_styles
+          {
+            textAlign: 'center'
+          }
+        end
+
         def render
-          div(style: styles) do
-            div {"you have #{state.stratfor_emails.count} stratfor emails"}
-            div {"hi"}
+          div(style: styles.merge(info_styles)) do
+            div(style: {fontSize: '40px', marginTop: '10px'}) {"#{state.urls_to_read.count}" }
+            div(style: {fontSize: '14px'}) {"URLs"}
           end
         end
       end

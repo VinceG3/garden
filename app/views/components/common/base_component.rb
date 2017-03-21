@@ -9,6 +9,11 @@ module Components
         @@api_url
       end
 
+      def get_data(endpoint, &block)
+        puts "retrieving #{route = api_endpoint(endpoint)}"
+        HTTP.get(route, &block)
+      end
+
       render do
         'hi'
       end
