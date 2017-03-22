@@ -1,3 +1,10 @@
+PATH
+  remote: /Users/vince/src/opal-hot-reloader
+  specs:
+    opal_hot_reloader (0.1.2)
+      listen (~> 3.0)
+      websocket
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -141,9 +148,6 @@ GEM
       opal (~> 0.10.0)
       sprockets (~> 3.0)
       tilt (>= 1.4)
-    opal_hot_reloader (0.1.0)
-      listen (~> 3.0)
-      websocket
     paggio (0.2.6)
     passenger (5.1.2)
       rack
@@ -249,7 +253,7 @@ DEPENDENCIES
   normalize-rails
   opal-browser
   opal-rails
-  opal_hot_reloader
+  opal_hot_reloader!
   passenger (>= 5.0.25)
   pry-rails
   puma (~> 3.0)

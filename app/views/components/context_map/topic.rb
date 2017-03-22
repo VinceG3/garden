@@ -3,28 +3,35 @@ module Components
     class Topic < Common::BaseComponent
       param :name
 
-      def styles
-        style = {
-          margin: '10px 0 0',
-          minWidth: '400px',
-          maxWidth: '800px',
-          textAlign: 'center',
-          fontSize: '32px',
-        }
-        style.merge!({ textDecoration: 'underline' }) if no_name?
+      def classes
+        c = 'topic'
+        c += ' clickable' if no_name?
       end
 
       def no_name?
         params.name.empty?
       end
 
+      def editing?
+        state.editing == true
+      end
+
+      def edit_field
+        input(type: 'text', autoFocus: true)
+      end
+
       def name
+        return edit_field if editing?
         return 'Name Context' if no_name?
         params.name
       end
 
+      def click_handler
+        state.editing! true
+      end
+
       def render
-        div(style: styles) do
+        div(class: classes, onClick: method(:click_handler).to_proc) do
           name
         end
       end

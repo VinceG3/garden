@@ -4,18 +4,6 @@ module Components
       param :name
       param :on_element_add, default: nil
 
-      def styles
-        {
-          width: '118px',
-          height: '130px',
-          border: '1px solid black',
-          float: 'left',
-          padding: '10px 20px',
-          margin: '10px 10px',
-          borderRadius: '10px',
-        }
-      end
-
       def text
         params.name
       end
@@ -31,7 +19,7 @@ module Components
       end
 
       def render
-        div(style: styles, onClick: method(:on_click).to_proc) do
+        div(class: 'element', onClick: method(:on_click).to_proc) do
           span(style: { textDecoration: 'underline' }) { text }
         end
       end

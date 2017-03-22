@@ -12,16 +12,6 @@ module Components
         })
       end
 
-      def styles
-        {
-          border: '1px solid black',
-          width: '400px',
-          height: '400px',
-          margin: '0 auto',
-          borderRadius: '10px',
-        }
-      end
-
       def on_element_add(name)
         new_context = state.context
         new_context[:elements][name] = []
@@ -29,7 +19,7 @@ module Components
       end
 
       def render
-        div(style: styles) do
+        div(class: 'show') do
           Context(
             context: state.context,
             on_element_add: method(:on_element_add).to_proc,

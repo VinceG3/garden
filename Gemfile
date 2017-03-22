@@ -45,7 +45,7 @@ group :development do
 end
 
 gem 'opal-rails'
-gem 'opal_hot_reloader'
+gem 'opal_hot_reloader', path: '/Users/vince/src/opal-hot-reloader'
 gem 'opal-browser'
 gem 'hyper-react'
 gem 'hyper-trace'

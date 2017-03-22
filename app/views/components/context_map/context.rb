@@ -4,14 +4,6 @@ module Components
       param :context
       param :on_element_add
 
-      def elements_style
-        {
-          margin: '0 auto',
-          width: '360px',
-          height: '300px',
-        }
-      end
-
       def elements
         params.context['elements'].keys.collect{|k| InvElement(name: k) }
       end
@@ -26,7 +18,7 @@ module Components
       def render
         div do
           Topic(name: params.context['topic'])
-          div(style: elements_style) do
+          div(class: 'context-map') do
             elements
             add_new_element if params.context['elements'].count < 4
           end
