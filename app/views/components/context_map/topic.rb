@@ -2,10 +2,12 @@ module Components
   module ContextMap
     class Topic < Common::BaseComponent
       param :name
+      param :on_save, type: Proc, default: nil, allow_nil: true
 
       def classes
         c = 'topic'
         c += ' clickable' if no_name?
+        c
       end
 
       def no_name?
@@ -17,7 +19,12 @@ module Components
       end
 
       def edit_field
-        input(type: 'text', autoFocus: true)
+        input(type: 'text', autoFocus: true).on(:key_press) do |e|
+          if e.key == 'Enter'
+            params.on_save(e.target.value)
+            state.editing! false
+          end
+        end
       end
 
       def name

@@ -38,3 +38,26 @@
   margin: 10px 10px;
   border-radius: 10px;
 }
+
+.sub-elements {
+  margin-top: 9px;
+  margin-left: 10px;
+}
+
+.new-sub-element {
+  margin-top: 9px;
+  margin-left: 10px;
+  width: 90px;
+  height: 20px;
+  
+  span {
+    visibility: hidden;
+  }
+
+  &:hover {
+    cursor: pointer;
+    span {
+      visibility: visible;
+    }
+  }
+}

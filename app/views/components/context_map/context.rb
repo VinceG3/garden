@@ -3,21 +3,27 @@ module Components
     class Context < Common::BaseComponent
       param :context
       param :on_element_add
+      param :on_topic_save
 
       def elements
-        params.context['elements'].keys.collect{|k| InvElement(name: k) }
+        params.context['elements'].collect do |k, v|
+          InvElement(name: k, sub_elements: v)
+        end
       end
 
       def add_new_element
         InvElement(
-          name: 'Add New',
+          name: '',
           on_element_add: params.on_element_add,
         )
       end
 
       def render
         div do
-          Topic(name: params.context['topic'])
+          Topic(
+            name: params.context['topic'],
+            on_save: params.on_topic_save,
+          )
           div(class: 'context-map') do
             elements
             add_new_element if params.context['elements'].count < 4
