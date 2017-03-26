@@ -7,7 +7,7 @@ module Components
       param :on_sub_element_add
 
       def elements
-        params.context['elements'].collect do |k, v|
+        es = params.context['elements'].collect do |k, v|
           InvElement(
             name: k,
             sub_elements: v,
@@ -15,6 +15,7 @@ module Components
             on_sub_element_add: params.on_sub_element_add
           )
         end
+        es << add_new_element if params.context['elements'].count < 4
       end
 
       def add_new_element
@@ -33,7 +34,6 @@ module Components
           )
           div(class: 'context-map') do
             elements
-            add_new_element if params.context['elements'].count < 4
           end
         end
       end

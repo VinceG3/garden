@@ -4,7 +4,7 @@ module Components
       param :name
       param :sub_elements, type: Array, default: []
       param :on_element_add, type: Proc
-      param :on_sub_element_add, type: Proc, default: nil
+      param :on_sub_element_add, type: Proc
 
       def name
         if is_add_new?

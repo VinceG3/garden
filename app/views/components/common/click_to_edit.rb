@@ -14,7 +14,7 @@ module Components::Common
     end
 
     def render
-      div(class_name: params.classes) do
+      div(class_name: params.classes + ' clickable') do
         if state.editing
           edit_field
         else
