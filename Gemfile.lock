@@ -1,7 +1,8 @@
-PATH
-  remote: /Users/vince/src/opal-hot-reloader
+GIT
+  remote: https://github.com/fkchang/opal-hot-reloader.git
+  revision: 1dbc3e5662bc9ed916b0ea999e01655c80a97739
   specs:
-    opal_hot_reloader (0.1.2)
+    opal_hot_reloader (0.1.3)
       listen (~> 3.0)
       websocket
 
@@ -265,4 +266,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.13.3
+   1.13.6
