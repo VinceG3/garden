@@ -1,7 +1,7 @@
 module Components
   module ContextMap
     class InvElement < Common::BaseComponent
-      param :name
+      param :name, type: String, default: ''
       param :sub_elements, type: Array, default: []
       param :on_element_add, type: Proc
       param :on_sub_element_add, type: Proc
