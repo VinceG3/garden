@@ -26,11 +26,18 @@ module Components
         state.context! new_context
       end
 
+      def on_sub_element_add(name, element)
+        new_context = state.context
+        new_context[:elements][element] << name
+        state.context! new_context
+      end
+
       def render
         div(class: 'show') do
           Context(
             context: state.context,
             on_element_add: method(:on_element_add).to_proc,
+            on_sub_element_add: method(:on_sub_element_add).to_proc,
             on_topic_save: method(:on_topic_save).to_proc
           )
         end

@@ -4,10 +4,16 @@ module Components
       param :context
       param :on_element_add
       param :on_topic_save
+      param :on_sub_element_add
 
       def elements
         params.context['elements'].collect do |k, v|
-          InvElement(name: k, sub_elements: v)
+          InvElement(
+            name: k,
+            sub_elements: v,
+            on_element_add: params.on_element_add,
+            on_sub_element_add: params.on_sub_element_add
+          )
         end
       end
 
@@ -15,6 +21,7 @@ module Components
         InvElement(
           name: '',
           on_element_add: params.on_element_add,
+          on_sub_element_add: params.on_sub_element_add
         )
       end
 
