@@ -2,28 +2,13 @@ module Components
   module ContextMap
     class InvElement < Common::BaseComponent
       param :name, type: String, default: ''
+      param :index, type: Number
       param :sub_elements, type: Array, default: []
       param :on_element_add, type: Proc
       param :on_sub_element_add, type: Proc
 
-      def name
-        if is_add_new?
-          Common::ClickToEdit(
-            classes: 'text_class',
-            placeholder: 'Name Element',
-            on_submit: method(:on_add_name).to_proc,
-          )
-        else
-          span(class: text_class) { params.name }
-        end
-      end
-
-      def is_add_new?
-        params.name == ''
-      end
-
       def on_add_name(value)
-        params.on_element_add(value)
+        params.on_element_add(value, params.name)
       end
 
       def text_class
@@ -31,8 +16,14 @@ module Components
         return ''
       end
 
+      def name
+        return params.name if !params.name.empty?
+        'Unnamed Element' unless params.sub_elements.empty?
+        'Name Element'
+      end
+
       def add_se(value)
-        params.on_sub_element_add(value, params.name)
+        params.on_sub_element_add(value, params.index)
         state.editing! false
       end
 
@@ -42,7 +33,7 @@ module Components
             span { name }
           end
         end
-        if ses.count < 4 && !is_add_new?
+        if ses.count < 4
           Common::ClickToEdit(
             classes: 'new-sub-element',
             placeholder: '+',
@@ -53,7 +44,11 @@ module Components
 
       def render
         div(class: 'element') do
-          name
+          Common::ClickToEdit(
+            classes: 'text_class',
+            placeholder: name,
+            on_submit: method(:on_add_name).to_proc,
+          )
           sub_elements
         end
       end

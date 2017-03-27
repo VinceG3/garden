@@ -11,9 +11,14 @@ module Components
         })
       end
 
-      def on_element_add(name)
+      def on_element_add(name, existing = nil)
         new_context = state.context
-        new_context[:elements][name] = []
+        puts existing
+        if existing.nil? or existing.empty?
+          new_context[:elements][name] = []
+        else
+          new_context[:elements][name] = new_context[:elements][existing]
+        end
         state.context! new_context
       end
 
@@ -23,24 +28,32 @@ module Components
         state.context! new_context
       end
 
-      def on_sub_element_add(name, element)
+      def on_sub_element_add(name, index)
         new_context = state.context
-        new_context[:elements][element] << name
+        element = new_context[:elements].to_a[index]
+        if element.nil?
+          new_context[:elements]["Unnamed Element #{index}"] = [name]
+        else
+          new_context[:elements][element[0]] << name
+        end
         state.context! new_context
       end
 
-      def element(name = '', sub_elements = [])
+      def element(index, name = '', sub_elements = [])
         InvElement(
           name: name,
           sub_elements: sub_elements,
+          index: index,
           on_element_add: method(:on_element_add).to_proc,
           on_sub_element_add: method(:on_sub_element_add).to_proc,
         )
       end
 
       def elements
-        es = state.context['elements'].collect {|k, v| element(k,v) }
-        es << element if state.context['elements'].count < 4
+        es = state.context['elements']
+          .each_with_index
+          .collect {|kv, i| element(i, kv[0], kv[1]) }
+        es << element(es.count) if state.context['elements'].count < 4
       end
 
       def render
