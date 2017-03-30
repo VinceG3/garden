@@ -20,7 +20,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'hyper-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,8 +43,12 @@ group :development do
   gem 'subcontractor'
 end
 
+gem 'hyper-component'
 gem 'opal-rails'
+gem 'hyper-react'
+gem 'hyper-store'
+gem 'hyper-trace'
+gem 'react-rails'
+
 gem 'opal_hot_reloader', github: 'fkchang/opal-hot-reloader'
 gem 'opal-browser'
-gem 'hyper-react'
-gem 'hyper-trace'
