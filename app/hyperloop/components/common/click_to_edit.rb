@@ -1,7 +1,7 @@
 module Common
   class ClickToEdit < Common::BaseComponent
     param :placeholder, type: String
-    param :on_submit, type: Proc
+    param :on_submit, type: Proc, default: lambda {}
     param :classes, type: String
 
     def edit_field
@@ -10,8 +10,10 @@ module Common
 
     def submit(val)
       params.on_submit(val)
-      state.editing! false
+      mutate.editing false
     end
+
+    def noop; end
 
     def render
       div(class_name: params.classes + ' clickable') do
@@ -20,7 +22,7 @@ module Common
         else
           span { params.placeholder }
         end
-      end.on(:click) { state.editing! true }
+      end.on(:click) { mutate.editing true }
     end
   end
 end

@@ -1,12 +1,18 @@
 module ::Entities
-  class Element
-    def from_array(array)
+  class Element < Entity
+    param :name
+    param :sub_elements
+
+    def initialize(name: '', sub_elements: SubElements.new)
+      @name = name
+      @sub_elements = sub_elements
+    end
+
+    def self.from_array(array = ['', []])
       new(
         name: array[0],
-        subelements: SubElements.from_array(array[1])
+        sub_elements: SubElements.from_array(array[1])
       )
-      @name = array[0]
-      @subelements = 
     end
   end
 end

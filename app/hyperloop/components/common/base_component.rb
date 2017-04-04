@@ -13,6 +13,13 @@ module Common
       HTTP.get(route, &block)
     end
 
+    def mutator_proc(param, attr)
+      Proc.new do |value|
+        params.send(param.to_sym).send("#{attr}=".to_sym, value)
+        force_update!
+      end
+    end
+
     render do
       'hi'
     end

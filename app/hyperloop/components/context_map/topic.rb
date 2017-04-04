@@ -5,13 +5,9 @@ module ContextMap
     def edit_field
       Common::ClickToEdit(
         classes: 'topic-edit',
-        placeholder: params.topic,
-        on_submit: method(:on_save_topic).to_proc
+        placeholder: params.topic.name,
+        on_submit: mutator_proc(:topic, :name) 
       )
-    end
-
-    def on_save_topic(value)
-      params.topic = value
     end
 
     def render
