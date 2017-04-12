@@ -15,7 +15,8 @@ module Common
 
     def put_data(endpoint, data, &block)
       puts "posting to #{api_endpoint(endpoint)}"
-      payload = {json: data.to_json}
+      payload = {json: data}
+      puts payload
       HTTP.post(
         api_endpoint(endpoint),
         payload: payload
