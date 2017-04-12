@@ -3,6 +3,7 @@ module Common
     param :placeholder, type: String
     param :on_submit, type: Proc, default: lambda {}
     param :classes, type: String
+    param :no_underline, type: Boolean, default: false
 
     def edit_field
       Common::TextInput(on_enter: method(:submit).to_proc)
@@ -13,10 +14,14 @@ module Common
       mutate.editing false
     end
 
-    def noop; end
+    def classes
+      ret = params.classes + ' clickable'
+      ret += ' no-underline' if params.no_underline
+      ret
+    end
 
     def render
-      div(class_name: params.classes + ' clickable') do
+      div(class_name: classes) do
         if state.editing
           edit_field
         else

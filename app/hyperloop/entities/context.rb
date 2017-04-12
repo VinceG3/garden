@@ -14,5 +14,12 @@ module ::Entities
         elements: elements,
       )
     end
+
+    def to_hash
+      {
+        topic: topic.name,
+        elements: elements.to_array
+      }
+    end
   end
 end

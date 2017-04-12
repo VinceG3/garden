@@ -12,6 +12,7 @@ module ContextMap
       div do
         Topic(topic: params.context.topic)
         div(class: 'context-map') { elements }
+        SaveButton()
       end
     end
   end

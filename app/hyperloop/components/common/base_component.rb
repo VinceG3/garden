@@ -13,6 +13,16 @@ module Common
       HTTP.get(route, &block)
     end
 
+    def put_data(endpoint, data, &block)
+      puts "posting to #{api_endpoint(endpoint)}"
+      payload = {json: data.to_json}
+      HTTP.post(
+        api_endpoint(endpoint),
+        payload: payload
+      )
+      block.call
+    end
+
     def mutator_proc(param, attr)
       Proc.new do |value|
         params.send(param.to_sym).send("#{attr}=".to_sym, value)

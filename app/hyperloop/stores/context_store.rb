@@ -15,4 +15,8 @@ class ContextStore < Hyperloop::Store
       }
     })
   end
+
+  def self.to_hash
+    state.context.to_hash
+  end
 end

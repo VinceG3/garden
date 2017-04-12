@@ -13,6 +13,13 @@
 .clickable {
   cursor: pointer;
   text-decoration: underline;
+  &.no-underline {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .context-map {
@@ -42,22 +49,21 @@
 .sub-elements {
   margin-top: 9px;
   margin-left: 10px;
+
+  input[type=text] {
+    width: 100px;
+  }
 }
 
-.new-sub-element {
-  margin-top: 9px;
-  margin-left: 10px;
-  width: 90px;
-  height: 20px;
-  
-  span {
-    visibility: hidden;
-  }
-
-  &:hover {
-    cursor: pointer;
-    span {
-      visibility: visible;
-    }
+.save-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  border-radius: 5px;
+  border: solid 1px black;
+  background: white;
+  padding: 10px 20px;
+  &:active {
+    background: grey;
   }
 }

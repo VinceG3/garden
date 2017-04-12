@@ -11,7 +11,8 @@ module ContextMap
         Common::ClickToEdit(
           classes: 'text_class',
           placeholder: placeholder,
-          on_submit: mutator_proc(:sub_element, :name)
+          on_submit: mutator_proc(:sub_element, :name),
+          no_underline: true
         )
       end
     end

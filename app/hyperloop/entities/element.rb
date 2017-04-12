@@ -3,7 +3,7 @@ module ::Entities
     param :name
     param :sub_elements
 
-    def initialize(name: '', sub_elements: SubElements.new)
+    def initialize(name: '', sub_elements: 4.times.collect{SubElement.new})
       @name = name
       @sub_elements = sub_elements
     end
@@ -11,8 +11,15 @@ module ::Entities
     def self.from_array(array = ['', []])
       new(
         name: array[0],
-        sub_elements: SubElements.from_array(array[1])
+        sub_elements: SubElement.from_array(array[1])
       )
+    end
+
+    def to_hash
+      {
+        name: name,
+        sub_elements: sub_elements.collect(&:name)
+      }
     end
   end
 end

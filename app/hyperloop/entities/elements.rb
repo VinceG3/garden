@@ -15,5 +15,9 @@ module ::Entities
     def all
       elements
     end
+
+    def to_array
+      elements.collect(&:to_hash)
+    end
   end
 end

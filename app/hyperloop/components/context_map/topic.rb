@@ -6,7 +6,8 @@ module ContextMap
       Common::ClickToEdit(
         classes: 'topic-edit',
         placeholder: params.topic.name,
-        on_submit: mutator_proc(:topic, :name) 
+        on_submit: mutator_proc(:topic, :name),
+        no_underline: true
       )
     end
 
