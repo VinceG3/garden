@@ -6,6 +6,7 @@ module ContextMap
 
     def on_save
       mutate.button_text 'Saved!'
+      $window.after(2) { mutate.button_text 'Save' }
     end
 
     def button_text
