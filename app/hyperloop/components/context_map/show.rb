@@ -4,7 +4,9 @@ module ContextMap
 
     before_mount do
       @@api_url = params.api_url
-      ContextStore.init_test
+      get_data('context/self') do |data|
+        ContextStore.init_test(data)
+      end
     end
 
     def render

@@ -1,19 +1,17 @@
 class ContextStore < Hyperloop::Store
+  # receives ApiGet do
+  #   mutate.context
+  # end
+
   state :context, reader: true, scope: :class
 
   def self.init(context_hash)
     mutate.context ::Entities::Context.from_hash(context_hash)
   end
 
-  def self.init_test
-    init({
-      topic: 'Self',
-      elements: {
-        'Identity' => ['Drive'],
-        'Consciousness' => ['Perception', 'Growth'],
-        'Personality' => ['Truth'],
-      }
-    })
+  def self.init_test(data)
+    # puts data
+    init(data)
   end
 
   def self.to_hash

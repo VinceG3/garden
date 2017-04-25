@@ -44,6 +44,7 @@ group :development do
 end
 
 gem 'hyper-component'
+gem 'hyper-operation'
 gem 'opal-rails'
 gem 'hyper-react'
 gem 'hyper-store'
