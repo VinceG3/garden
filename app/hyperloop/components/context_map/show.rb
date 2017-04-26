@@ -2,16 +2,16 @@ module ContextMap
   class Show < Common::BaseComponent
     param :api_url
 
-    before_mount do
+    after_mount do
       @@api_url = params.api_url
-      get_data('context/self') do |data|
-        ContextStore.init_test(data)
-      end
+      ContextStore.init(@@api_url)
     end
 
     def render
-      div(class: 'show') do
-        Context(context: ContextStore.context)
+      if ContextStore.context
+        div(class: 'show') do
+          Context(context: ContextStore.context)
+        end
       end
     end
   end
