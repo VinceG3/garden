@@ -4,7 +4,7 @@ module ContextMap
 
     after_mount do
       @@api_url = params.api_url
-      ContextStore.init(@@api_url)
+      ContextStore.init(@@api_url, self)
     end
 
     def render

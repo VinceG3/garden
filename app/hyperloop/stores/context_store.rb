@@ -45,13 +45,18 @@ class ContextStore < ApplicationStore
 
   state :context, reader: true, scope: :class
 
-  def self.init(api_url)
+  def self.init(api_url, component)
     @api_url = api_url
+    @component = component
     ApiGet.run(route: 'context/Self', api_url: @api_url)
   end
 
   def self.init_test(data)
     init(data)
+  end
+
+  def self.refresh
+    @component.force_update!
   end
 
   def self.to_hash

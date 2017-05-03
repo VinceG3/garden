@@ -27,7 +27,7 @@ module Common
     def mutator_proc(param, attr)
       Proc.new do |value|
         params.send(param.to_sym).send("#{attr}=".to_sym, value)
-        force_update!
+        ContextStore.refresh
       end
     end
 
