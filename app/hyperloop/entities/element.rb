@@ -15,6 +15,13 @@ module ::Entities
       )
     end
 
+    def self.from_hash(hash = {})
+      new(
+        name: hash['name'],
+        sub_elements: SubElement.from_array(hash['sub_elements'])
+      )
+    end
+
     def to_hash
       {
         name: name,

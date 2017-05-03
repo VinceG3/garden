@@ -6,8 +6,9 @@ module ::Entities
       @elements = elements
     end    
 
-    def self.from_hash(hash)
-      elements = hash.collect {|a| Element.from_array(a) }
+    def self.from_array(array)
+      array ||= []
+      elements = array.collect {|hash| Element.from_hash(hash) }
       elements += (elements.size < 4) ? [Element.new] * (4 - elements.size) : []
       new(elements: elements)
     end

@@ -7,15 +7,24 @@ module ContextMap
       return ''
     end
 
+    def placeholder_index
+      ret = nil
+      params.element.sub_elements.each_with_index do |se, i|
+        next unless ret.nil?
+        ret = i if se.name == ''
+      end
+      ret
+    end
+
     def sub_elements
-      ses = params.element.sub_elements
-      ses.collect do |sub_element|
-        SubElement(sub_element: sub_element)
+      params.element.sub_elements.each_with_index.collect do |sub_element, i|
+        SubElement(sub_element: sub_element, show_placeholder: placeholder_index == i)
       end
     end
 
     def placeholder
-      params.element.name.empty? ? 'Name Element' : params.element.name
+      condition = params.element.name.blank?
+      condition ? 'Name Element' : params.element.name
     end
 
     def render

@@ -1,5 +1,6 @@
 Hyperloop.configuration do |config|
   config.transport = :none
+  config.import 'active_support/core_ext'
 end
 
 module Hyperloop

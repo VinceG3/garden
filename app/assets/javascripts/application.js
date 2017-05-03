@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require_tree .
 //= require hyperloop-loader
-//= require active_support/core_ext/module/delegation

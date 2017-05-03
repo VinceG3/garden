@@ -8,6 +8,7 @@ if React::IsomorphicHelpers.on_opal_client?
   require 'browser/delay'
   # add any additional requires that can ONLY run on client here
   require 'opal_hot_reloader'
+  require 'active_support/core_ext'
   OpalHotReloader.listen
 end
 

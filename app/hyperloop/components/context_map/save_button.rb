@@ -5,6 +5,7 @@ module ContextMap
     end
 
     def on_save
+      ContextStore.save
       mutate.button_text 'Saved!'
       $window.after(2) { mutate.button_text 'Save' }
     end

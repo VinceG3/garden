@@ -9,9 +9,10 @@ module ContextMap
     end
 
     def render
-      div do
+      div(class: 'context-map') do
+        Scratch(scratch: params.context.scratch)
         Topic(topic: params.context.topic)
-        div(class: 'context-map') { elements }
+        div { elements }
         SaveButton()
       end
     end

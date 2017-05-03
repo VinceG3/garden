@@ -1,9 +1,12 @@
 module ContextMap
   class SubElement < Common::BaseComponent
     param :sub_element
+    param :show_placeholder
 
     def placeholder
-      params.sub_element.name.empty? ? '+' : params.sub_element.name
+      return params.sub_element.name unless params.sub_element.name.empty?
+      return '+' if params.show_placeholder
+      ''
     end
 
     def render
