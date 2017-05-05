@@ -2,18 +2,32 @@ module ::Entities
   class Scratch < Entity
     param :sub_elements
 
-    def initialize(sub_element_array = [])
-      @sub_elements = sub_element_array << SubElement.new
+    def initialize(array)
+      array ||= []
+      ses = array.collect do |name|
+        SubElement.new(name: name, on_change: method(:on_change).to_proc)
+      end
+      ses << SubElement.new(on_change: method(:on_change).to_proc)
+      @sub_elements = ses
     end
 
     def self.from_array(array)
-      array ||= ['']
-      sub_elements = SubElement.from_array(array)
-      new(sub_elements)
+      new(array)
+    end
+
+    def on_change
+      if @sub_elements.last.name != ''
+        @sub_elements << SubElement.new(on_change: method(:on_change).to_proc)
+        ContextStore.refresh
+      end
     end
 
     def all
       sub_elements
+    end
+
+    def to_array
+      sub_elements.collect(&:name)
     end
   end
 end

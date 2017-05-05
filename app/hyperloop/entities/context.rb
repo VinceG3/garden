@@ -21,7 +21,8 @@ module ::Entities
     def to_hash
       {
         topic: topic.name,
-        elements: elements.to_array
+        elements: elements.to_array,
+        scratch: scratch.to_array
       }
     end
   end

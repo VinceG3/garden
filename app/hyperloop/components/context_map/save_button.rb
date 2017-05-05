@@ -1,10 +1,6 @@
 module ContextMap
   class SaveButton < Common::BaseComponent
     def on_click
-      put_data("context", ContextStore.to_hash) { on_save }
-    end
-
-    def on_save
       ContextStore.save
       mutate.button_text 'Saved!'
       $window.after(2) { mutate.button_text 'Save' }

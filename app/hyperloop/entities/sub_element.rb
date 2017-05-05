@@ -2,8 +2,14 @@ module ::Entities
   class SubElement < Entity
     param :name
 
-    def initialize(name: '')
+    def initialize(name: '', on_change: nil)
       @name = name
+      @on_change = on_change
+    end
+
+    def on_change
+      return if @on_change.nil?
+      @on_change.call
     end
 
     def self.from_array(array)
