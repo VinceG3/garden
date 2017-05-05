@@ -28,8 +28,9 @@ class ContextStore < ApplicationStore
     end
 
     step   { puts "making api request to: #{full_route}" }
-    step   { HTTP.post(full_route, payload: payload) }
-    failed {|exception| puts "couldn't make request!"; puts exception }
+    # step   { HTTP.post(full_route, payload: payload) }
+    step { HTTP.post(full_route, payload: payload).then { |response| puts 'success!'; response}.fail { |http| debugger; nil }}
+    # failed {|exception| puts "couldn't make request!"; puts exception }
     step   {|response| params.data = response.json }
   end
 

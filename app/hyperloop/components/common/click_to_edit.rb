@@ -4,6 +4,7 @@ module Common
     param :on_submit, type: Proc, default: lambda {}
     param :classes, type: String
     param :no_underline, type: Boolean, default: false
+    param autofocus: nil
 
     def edit_field
       Common::TextInput(on_enter: method(:submit).to_proc)
@@ -22,7 +23,7 @@ module Common
 
     def render
       div(class_name: classes) do
-        if state.editing
+        if state.editing || params.autofocus
           edit_field
         else
           span { params.placeholder }
