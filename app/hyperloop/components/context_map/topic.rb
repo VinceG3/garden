@@ -3,12 +3,7 @@ module ContextMap
     param :topic
 
     def edit_field
-      Common::ClickToEdit(
-        classes: 'topic-edit',
-        placeholder: params.topic.name,
-        on_submit: mutator_proc(:topic, :name),
-        no_underline: true
-      )
+      params.topic.name
     end
 
     def render

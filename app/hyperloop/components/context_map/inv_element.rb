@@ -27,15 +27,18 @@ module ContextMap
       condition ? 'Name Element' : params.element.name
     end
 
+    def drop(ev)
+      name = `#{ev.native_event}.native.dataTransfer.getData('ref')`
+      ContextStore.remove_sub_element(name)
+      params.element.add_sub_element(name)
+    end
+
     def render
       div(class: 'element') do
-        Common::ClickToEdit(
-          classes: 'text_class',
-          placeholder: placeholder,
-          on_submit: mutator_proc(:element, :name)
-        )
+        a(href: "/context-map/#{params.element.name}") { params.element.name }
         sub_elements
-      end
+      end.on(:drop) {|ev| drop(ev) }
+         .on(:drag_over) { |ev| ev.prevent_default }
     end
   end
 end

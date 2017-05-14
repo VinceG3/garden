@@ -29,5 +29,10 @@ module ::Entities
     def to_array
       sub_elements.collect(&:name)
     end
+
+    def remove_sub_element(name)
+      sub_elements.find_all {|se| se.name == name }
+                  .each {|se| se.name = '' }
+    end
   end
 end

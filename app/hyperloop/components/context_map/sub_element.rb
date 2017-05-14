@@ -20,7 +20,7 @@ module ContextMap
     end
 
     def render
-      div(class: 'sub-elements') do
+      div(class: 'sub-elements', draggable: true) do
         Common::ClickToEdit(
           autofocus: params.autofocus,
           classes: 'text_class',
@@ -28,6 +28,8 @@ module ContextMap
           on_submit: on_submit,
           no_underline: true
         )
+      end.on(:drag_start) do |ev|
+        `#{ev.native_event}.native.dataTransfer.setData("ref", #{params.sub_element.name})`
       end
     end
   end

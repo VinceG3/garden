@@ -12,5 +12,6 @@ if React::IsomorphicHelpers.on_opal_client?
   OpalHotReloader.listen
 end
 
-
-
+class RDnD < React::NativeLibrary
+  imports 'DragSource'
+end

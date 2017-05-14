@@ -9,6 +9,7 @@ module ::Entities
     end
 
     def self.from_hash(hash)
+      hash ||= {}
       elements = Elements.from_array(hash[:elements])
       scratch = Scratch.from_array(hash[:scratch])
       new(

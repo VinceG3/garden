@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   def menu
     render_component(**base_params)
   end
-  
+
+  def component
+    component_name = params[:component].capitalize
+    render_component(component_name, **base_params.merge(uid: params[:uid]))
+  end
+
   private
 
   def base_params

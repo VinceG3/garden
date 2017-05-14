@@ -28,5 +28,19 @@ module ::Entities
         sub_elements: sub_elements.collect(&:name)
       }
     end
+
+    def add_sub_element(name)
+      find_first_empty_sub_element.name = name
+      ContextStore.refresh
+    end
+
+    def find_first_empty_sub_element
+      sub_elements.find {|se| se.name == '' }
+    end
+
+    def remove_sub_element(name)
+      sub_elements.find_all {|se| se.name == name }
+                  .each {|se| se.name = '' }
+    end
   end
 end

@@ -46,10 +46,11 @@ class ContextStore < ApplicationStore
 
   state :context, reader: true, scope: :class
 
-  def self.init(api_url, component)
+  def self.init(api_url, component, endpoint)
+    endpoint ||= 'Self'
     @api_url = api_url
     @component = component
-    ApiGet.run(route: 'context/Self', api_url: @api_url)
+    ApiGet.run(route: "context/#{endpoint}", api_url: @api_url)
   end
 
   def self.init_test(data)
@@ -66,5 +67,10 @@ class ContextStore < ApplicationStore
 
   def self.save
     ApiPut.run(route: 'context', api_url: @api_url, data: to_hash)
+  end
+
+  def self.remove_sub_element(name)
+    context.scratch.remove_sub_element(name)
+    context.elements.elements.each {|e| e.remove_sub_element(name)}
   end
 end
