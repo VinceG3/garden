@@ -1,5 +1,5 @@
 module Common
-  class Link < BaseComponent
+  class Link < ApplicationComponent
     param :text
     param :url
 

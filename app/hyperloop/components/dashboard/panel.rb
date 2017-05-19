@@ -1,5 +1,5 @@
 module Dashboard
-  class Panel < Common::BaseComponent
+  class Panel < Common::ApplicationComponent
     param :text, type: String
 
     def styles

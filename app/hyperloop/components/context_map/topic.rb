@@ -1,5 +1,5 @@
 module ContextMap
-  class Topic < Common::BaseComponent
+  class Topic < Common::ApplicationComponent
     param :topic
 
     def edit_field

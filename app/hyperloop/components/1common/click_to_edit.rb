@@ -1,10 +1,11 @@
 module Common
-  class ClickToEdit < Common::BaseComponent
+  class ClickToEdit < Common::ApplicationComponent
     param :placeholder, type: String
     param :on_submit, type: Proc, default: lambda {}
     param :classes, type: String
     param :no_underline, type: Boolean, default: false
     param autofocus: nil
+    param link_if_present: nil
 
     def edit_field
       Common::TextInput(on_enter: method(:submit).to_proc)
@@ -21,6 +22,14 @@ module Common
       ret
     end
 
+    def handle_click
+      if params.link_if_present
+        `window.location = #{params.link_if_present}`
+      else
+        mutate.editing true
+      end
+    end
+
     def render
       div(class_name: classes) do
         if state.editing || params.autofocus
@@ -28,7 +37,7 @@ module Common
         else
           span { params.placeholder }
         end
-      end.on(:click) { mutate.editing true }
+      end.on(:click) { handle_click }
     end
   end
 end

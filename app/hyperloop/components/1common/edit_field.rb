@@ -1,5 +1,5 @@
 module Common
-  class TextInput < Common::BaseComponent
+  class TextInput < Common::ApplicationComponent
     param :on_enter, type: Proc
 
     def render

@@ -1,10 +1,7 @@
 module Dashboard
   class Show < Common::BaseComponent
     param :api_url
-
-    before_mount do
-      @@api_url = params.api_url
-    end
+    # set_store('ContextStore')
 
     def render
       div do

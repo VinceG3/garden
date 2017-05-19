@@ -1,5 +1,5 @@
 module ContextMap
-  class SubElement < Common::BaseComponent
+  class SubElement < Common::ApplicationComponent
     param :sub_element
     param show_placeholder: false
     param on_edit: nil
@@ -19,6 +19,10 @@ module ContextMap
       end
     end
 
+    def link_if_present
+      "/context-map/#{params.sub_element.name}" unless params.sub_element.name.empty?
+    end
+
     def render
       div(class: 'sub-elements', draggable: true) do
         Common::ClickToEdit(
@@ -26,7 +30,8 @@ module ContextMap
           classes: 'text_class',
           placeholder: placeholder,
           on_submit: on_submit,
-          no_underline: true
+          no_underline: true,
+          link_if_present: link_if_present
         )
       end.on(:drag_start) do |ev|
         `#{ev.native_event}.native.dataTransfer.setData("ref", #{params.sub_element.name})`

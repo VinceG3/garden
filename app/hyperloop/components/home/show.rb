@@ -1,5 +1,5 @@
 module Home
-  class Show < Common::BaseComponent
+  class Show < Common::ApplicationComponent
 
     param :say_hello_to
 

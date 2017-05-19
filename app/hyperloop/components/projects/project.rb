@@ -1,5 +1,5 @@
 module Projects
-  class Project < Common::BaseComponent
+  class Project < Common::ApplicationComponent
     param :name, type: String, allow_nil: true
     param :on_add, type: Proc, default: nil, allow_nil: true
 

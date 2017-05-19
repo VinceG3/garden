@@ -1,5 +1,5 @@
 module ContextMap
-  class SaveButton < Common::BaseComponent
+  class SaveButton < Common::ApplicationComponent
     def on_click
       ContextStore.save
       mutate.button_text 'Saved!'

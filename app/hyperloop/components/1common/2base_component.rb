@@ -1,5 +1,5 @@
 module Common
-  class BaseComponent < Hyperloop::Component
+  class BaseComponent < Common::ApplicationComponent
     def api_endpoint(route)
       "#{api_url}/#{route}"
     end
@@ -24,16 +24,16 @@ module Common
       block.call
     end
 
-    def mutator_proc(param, attr, block = nil)
-      Proc.new do |value|
-        params.send(param.to_sym).send("#{attr}=".to_sym, value)
-        ContextStore.refresh
-        block.call unless block.nil?
+    def self.set_store(store_class)
+      after_mount do
+        @@api_url = params.api_url
+        self.class.const_get(store_class).init(
+          api_url: @@api_url,
+          component: self,
+          endpoint: params.topic,
+          component_name: params.component_name
+        )
       end
-    end
-
-    render do
-      'hi'
     end
   end
 end

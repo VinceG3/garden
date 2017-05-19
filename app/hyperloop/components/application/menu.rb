@@ -1,7 +1,5 @@
-require 'components/common/base_component'
-
 module Application
-  class Menu < Common::BaseComponent
+  class Menu < Common::ApplicationComponent
     param :api_url
 
     before_mount do

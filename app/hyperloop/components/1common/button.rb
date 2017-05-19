@@ -1,5 +1,5 @@
 module Common
-  class ButtonWrapper < BaseComponent
+  class ButtonWrapper < ApplicationComponent
     param :endpoint, type: String, default: nil, allow_nil: true
     param :click_cb, type: Proc, default: nil, allow_nil: true
     param :text, type: String

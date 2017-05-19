@@ -1,5 +1,5 @@
 module ContextMap
-  class Scratch < Common::BaseComponent
+  class Scratch < Common::ApplicationComponent
     param :scratch
 
     def placeholder_index

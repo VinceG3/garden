@@ -1,5 +1,5 @@
 module Projects
-  class Show < Common::BaseComponent
+  class Show < Common::ApplicationComponent
     param :api_url
 
     before_mount do

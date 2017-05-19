@@ -1,5 +1,5 @@
 module ContextMap
-  class InvElement < Common::BaseComponent
+  class InvElement < Common::ApplicationComponent
     param :element
 
     def text_class
@@ -33,9 +33,35 @@ module ContextMap
       params.element.add_sub_element(name)
     end
 
+    def on_submit
+      mutator_proc(:element, :name)
+    end
+
+    def name_href
+      href = "/context-map/#{params.element.name}"
+      href += "?elements=#{params.element.sub_elements.collect(&:name).join(',')}"
+      href
+    end
+
+    def name_link
+      a(href: name_href) { params.element.name }
+    end
+
+    def name
+      unless params.element.name.empty?
+        name_link
+      else
+        Common::ClickToEdit(
+          classes: 'text_class',
+          placeholder: 'Name Element',
+          on_submit: on_submit
+        )
+      end
+    end
+
     def render
       div(class: 'element') do
-        a(href: "/context-map/#{params.element.name}") { params.element.name }
+        name
         sub_elements
       end.on(:drop) {|ev| drop(ev) }
          .on(:drag_over) { |ev| ev.prevent_default }

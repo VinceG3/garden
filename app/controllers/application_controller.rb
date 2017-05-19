@@ -1,3 +1,4 @@
+# /app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -7,7 +8,10 @@ class ApplicationController < ActionController::Base
 
   def component
     component_name = params[:component].capitalize
-    render_component(component_name, **base_params.merge(uid: params[:uid]))
+    render_component(component_name, **base_params.merge(
+      uid: params[:uid],
+      component_name: component_name
+    ))
   end
 
   private

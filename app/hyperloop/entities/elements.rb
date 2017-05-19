@@ -2,14 +2,14 @@ module ::Entities
   class Elements < Entity
     param :elements
     
-    def initialize(elements: [Element.new * 4])
+    def initialize(elements: 4.times.collect{Element.new})
       @elements = elements
     end    
 
     def self.from_array(array)
       array ||= []
       elements = array.collect {|hash| Element.from_hash(hash) }
-      elements += (elements.size < 4) ? [Element.new] * (4 - elements.size) : []
+      elements += (elements.size < 4) ? (4 - elements.size).times.collect{Element.new} : []
       new(elements: elements)
     end
 
