@@ -9,6 +9,7 @@ set :repo_url, "git@github.com:VinceG3/garden.git"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/garden"
+set :bundle_without, [:development, :test]
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
