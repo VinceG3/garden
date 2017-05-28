@@ -27,7 +27,7 @@ module ::Entities
     end
 
     def to_array
-      sub_elements.collect(&:name)
+      sub_elements.collect(&:name).reject{|name| name.empty? }
     end
 
     def remove_sub_element(name)

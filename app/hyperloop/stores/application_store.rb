@@ -32,17 +32,18 @@ class ApplicationStore < Hyperloop::Store
     step {|response| params.data = response.json }
   end
 
-  def self.init(api_url:, component:, endpoint:, component_name:, extra_params: nil)
+  def self.init(api_url:, component:, endpoint:, component_name:, passed: nil)
     endpoint ||= 'Self'
     @api_url = api_url
     @component = component
     @component_name = component_name
-    @extra_params = extra_params
+    @passed = passed
     set_getter
     ApiGet.run(route: "#{component_name}/#{endpoint}", api_url: @api_url)
   end
 
   def self.set_state(data, key)
+    data = handle_passed(data) if respond_to?(:handle_passed)
     begin
       `eval(#{"self.$mutate().$#{key}(data);"})` # calling mutate dynamically
     rescue StandardError => e

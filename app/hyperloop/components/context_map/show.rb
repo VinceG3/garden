@@ -4,7 +4,7 @@ module ContextMap
     param :topic
     param :component_name
     param :passed_elements
-    set_store 'ContextStore'
+    set_store 'ContextStore', passed_in: :passed_elements
 
     def render
       if ContextStore.context

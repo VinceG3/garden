@@ -24,14 +24,16 @@ module Common
       block.call
     end
 
-    def self.set_store(store_class)
+    def self.set_store(store_class, passed_in: nil)
       after_mount do
         @@api_url = params.api_url
+        extra_params = passed_in ? params.send(passed_in) : nil
         self.class.const_get(store_class).init(
           api_url: @@api_url,
           component: self,
           endpoint: params.topic,
-          component_name: params.component_name
+          component_name: params.component_name,
+          passed: extra_params
         )
       end
     end
