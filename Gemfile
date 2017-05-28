@@ -27,6 +27,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'foreman'
   gem 'subcontractor'
+  gem 'opal_hot_reloader', github: 'fkchang/opal-hot-reloader'
 end
 
 gem 'hyper-component'
@@ -36,5 +37,4 @@ gem 'hyper-react'
 gem 'hyper-store'
 gem 'hyper-trace'
 gem 'react-rails'
-gem 'opal_hot_reloader', github: 'fkchang/opal-hot-reloader'
 gem 'opal-browser'
