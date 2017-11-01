@@ -8,7 +8,7 @@ class ApplicationStore < Hyperloop::Store
       params.api_url + '/' + params.route
     end
 
-    step   { puts "making api request to: #{full_route}" }
+    step   { puts "making api get request to: #{full_route}" }
     step   { HTTP.get(full_route) }
     failed {|exception| puts "couldn't make request!"; puts exception }
     step   {|response| params.data = response.json }
@@ -27,7 +27,7 @@ class ApplicationStore < Hyperloop::Store
       { json: params.data }
     end
 
-    step { puts "making api request to: #{full_route}" }
+    step { puts "making api put request to: #{full_route}" }
     step { HTTP.post(full_route, payload: payload).then { |response| puts 'success!'; response}.fail { |http| debugger; nil }}
     step {|response| params.data = response.json }
   end
@@ -57,7 +57,7 @@ class ApplicationStore < Hyperloop::Store
       begin
         entity_class_name = self.name.gsub(/Store/, '')
         entity_class = Entities.const_get(entity_class_name)
-        set_state(entity_class.from_hash(params.data), entity_class_name.downcase)
+        set_state(entity_class.from_data(params.data), entity_class_name.underscore)
       rescue StandardError => e
         e.backtrace.unshift("#{e} (#{e.class.name})").each{|line| puts line }
       end

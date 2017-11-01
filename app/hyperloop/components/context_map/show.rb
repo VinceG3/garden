@@ -2,6 +2,7 @@ module ContextMap
   class Show < Common::BaseComponent
     param :api_url
     param :topic
+    param :endpoint
     param :component_name
     param :passed_elements
     set_store 'ContextStore', passed_in: :passed_elements

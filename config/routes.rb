@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/home', to: 'home#show'
   get '/dashboard', to: 'dashboard#show'
   get '/menu', to: 'application#menu'
-  get '/context-map', to: 'context_map#show'
+  get '/context-map', to: 'context_map#list'
   get '/context-map/:topic', to: 'context_map#show'
   get '/:component(/:uid)', to: 'application#component'
 

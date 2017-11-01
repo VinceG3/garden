@@ -11,7 +11,7 @@ module ContextMap
     end
 
     def render
-      button.save_button { button_text }
+      button.button { button_text }
         .on('click') { on_click }
     end
   end	

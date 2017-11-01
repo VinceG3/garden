@@ -7,6 +7,17 @@ module Common
     param autofocus: nil
     param link_if_present: nil
 
+    after_update do
+      if state.editing
+        Document.on(:click) do |event|
+          unless event.target.tag_name == 'input'
+            Document.off(:click)
+            mutate.editing false
+          end
+        end
+      end
+    end
+
     def edit_field
       Common::TextInput(on_enter: method(:submit).to_proc)
     end

@@ -1,12 +1,8 @@
+a { color: black; }
 .topic {
-  margin: 10px 0 0;
-  width: 362px;
-  text-align: center;
   font-size: 32px;
-  input {
-    position: relative;
-    top: -9px;
-  }
+  text-align: center;
+  margin-bottom: 1vw;
 }
 
 .clickable {
@@ -22,68 +18,81 @@
 }
 
 .context-map {
-  margin: 0 auto;
-  width: 360px;
-  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.show {
+.main {
+  margin: auto;
+  padding: 2vw;
   border: 1px solid black;
-  width: 400px;
-  height: 400px;
-  margin: 0 auto;
   border-radius: 10px;
+  width: 33vw;
+}
+
+.elements {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .element {
   a {
     font-size: 16pt;
     text-decoration: none;
+    display: block;
+    margin-bottom: .5vw;
   }
-  width: 118px;
-  height: 130px;
   border: 1px solid black;
-  float: left;
-  padding: 10px 20px;
-  margin: 10px 10px;
   border-radius: 10px;
+  width: 12vw;
+  padding: 1vw;
+  margin: 1vw auto;
+  min-height: 10vw;
 }
 
 .sub-elements {
-  margin-top: 9px;
-  margin-left: 10px;
   font-size: 9pt;
-
-  input[type=text] {
-    width: 100px;
+  margin: .5vw 0 .5vw 1vw;
+  input {
+    width: 8vw;
   }
 }
 
-.save-button {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  border-radius: 5px;
-  border: solid 1px black;
-  background: white;
-  padding: 10px 20px;
-  &:active {
-    background: grey;
+.buttons {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  .button {
+    margin-bottom: 1vw;
+    padding: .5vw 1vw;
+    border-radius: 5px;
+    border: solid 1px black;
+    background: white;
+    &:active {
+      background: grey;
+    }
   }
 }
 
 .scratch {
-  position: fixed;
-  top: 10px;
-  left: 10px;
+  margin-right: auto;
+  min-width: 20%;
   border-radius: 5px;
   border: solid 1px black;
   background: white;
-  padding: 10px 20px;
-  min-height: 100px;
-  min-width: 300px; 
 
   .sub-elements {
     font-size: 12pt;
+    margin: 2vw;
   } 
+}
+
+.context-list {
+  li {
+    list-style-type: none;
+    margin: 1vw;
+    a { text-decoration: none; }
+  }
 }

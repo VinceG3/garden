@@ -3,7 +3,7 @@ module Dashboard
     class ContextMap < Panel
       def render
         div(style: styles) do
-          'I\'m the whole world!!'
+          a(href: '/context-map') { "get contextual!" }
         end
       end
     end

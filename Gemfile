@@ -12,8 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 gem 'capistrano-rails', group: :development
-gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
-gem 'capistrano-passenger'
+# gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+# gem 'capistrano-passenger'
 gem 'dotenv-rails'
 gem 'normalize-rails'
 gem 'rspec-rails'

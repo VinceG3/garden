@@ -31,7 +31,7 @@ module Common
         self.class.const_get(store_class).init(
           api_url: @@api_url,
           component: self,
-          endpoint: params.topic,
+          endpoint: params.endpoint,
           component_name: params.component_name,
           passed: extra_params
         )

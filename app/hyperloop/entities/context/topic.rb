@@ -4,6 +4,10 @@ module ::Entities
     
     def initialize(name = '')
       @name = name
+        .tr('-', ' ')
+        .split(/ |\_/)
+        .map(&:capitalize)
+        .join(' ')
     end
   end
 end

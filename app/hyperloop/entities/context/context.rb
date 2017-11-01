@@ -19,6 +19,10 @@ module ::Entities
       )
     end
 
+    def self.from_data(data)
+      from_hash(data)
+    end
+
     def to_hash
       {
         topic: topic.name,
