@@ -54,7 +54,8 @@ module ContextMap
         Common::ClickToEdit(
           classes: 'text_class',
           placeholder: 'Name Element',
-          on_submit: on_submit
+          on_submit: on_submit,
+          empty: true
         )
       end
     end

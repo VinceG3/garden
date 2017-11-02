@@ -6,16 +6,20 @@ module Common
     param :no_underline, type: Boolean, default: false
     param autofocus: nil
     param link_if_present: nil
+    param :empty, type: Boolean
 
     after_update do
       if state.editing
         Document.on(:click) do |event|
           unless event.target.tag_name == 'input'
-            Document.off(:click)
             mutate.editing false
           end
         end
       end
+    end
+
+    before_unmount do
+      Document.off(:click)
     end
 
     def edit_field
@@ -41,14 +45,27 @@ module Common
       end
     end
 
-    def render
+    def handle_mutate(action)
+      if action == :edit
+        mutate.editing true
+      elsif action == :delete
+        params.on_submit('')
+      end
+    end
+
+    render do
       div(class_name: classes) do
         if state.editing || params.autofocus
           edit_field
         else
-          span { params.placeholder }
+          span.link { params.placeholder }
+            .on(:click) { handle_click }
+          if state.hover && !params.empty
+            MutateIcons(on_action: method(:handle_mutate).to_proc)
+          end
         end
-      end.on(:click) { handle_click }
+      end.on(:mouse_enter) { mutate.hover true }
+         .on(:mouse_leave) { mutate.hover false }
     end
   end
 end

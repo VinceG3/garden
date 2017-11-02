@@ -5,6 +5,7 @@ module ContextMap
     param on_edit: nil
     param autofocus: nil
 
+
     def placeholder
       return params.sub_element.name unless params.sub_element.name.empty?
       return '+' if params.show_placeholder
@@ -31,7 +32,8 @@ module ContextMap
           placeholder: placeholder,
           on_submit: on_submit,
           no_underline: true,
-          link_if_present: link_if_present
+          link_if_present: link_if_present,
+          empty: params.show_placeholder
         )
       end.on(:drag_start) do |ev|
         `#{ev.native_event}.native.dataTransfer.setData("ref", #{params.sub_element.name})`

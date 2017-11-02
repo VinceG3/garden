@@ -11,9 +11,9 @@ module ContextMap
         Common::TextInput(on_enter: method(:on_new).to_proc)
         ul.context_list do
           params.context_list.list.each do |context|
-            li do
-              a(href: "/context-map/#{context['topic']}") { context['topic']}
-            end
+            ContextListItem(
+              topic: context['topic']
+            )
           end
         end
       end
