@@ -1,6 +1,6 @@
 module ContextMap
   class ContextListItem < Common::ApplicationComponent
-    param :topic
+    params :topic
 
     def handle_mutate_proc(topic)
       retval = ->(action) { puts 'deleting!' }
