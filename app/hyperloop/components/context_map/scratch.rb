@@ -12,9 +12,8 @@ module ContextMap
     end
 
     def on_edit(index)
-      return Proc.new do
-        mutate.autofocus index + 1
-      end
+      retval = ->() { mutate.autofocus index + 1 }
+      return retval
     end
 
     def render

@@ -1,6 +1,7 @@
 Hyperloop.configuration do |config|
   config.transport = :none
   config.import 'active_support/core_ext'
+  config.prerendering = :off
 end
 
 module Hyperloop
