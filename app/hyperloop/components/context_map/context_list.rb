@@ -12,7 +12,7 @@ module ContextMap
         ul.context_list do
           params.context_list.list.each do |context|
             ContextListItem(
-              topic: context['topic']
+              context: context
             )
           end
         end

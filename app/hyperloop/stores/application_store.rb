@@ -1,37 +1,4 @@
 class ApplicationStore < Hyperloop::Store
-  class ApiGet < Hyperloop::Operation
-    param :route, type: String
-    param :api_url, type: String
-    outbound :data
-
-    def full_route
-      params.api_url + '/' + params.route
-    end
-
-    step   { puts "making api get request to: #{full_route}" }
-    step   { HTTP.get(full_route) }
-    failed {|exception| puts "couldn't make request!"; puts exception }
-    step   {|response| params.data = response.json }
-  end
-
-  class ApiPut < Hyperloop::Operation
-    param :route, type: String
-    param :api_url, type: String
-    param :data, type: Hash
-
-    def full_route
-      params.api_url + '/' + params.route
-    end
-
-    def payload
-      { json: params.data }
-    end
-
-    step { puts "making api put request to: #{full_route}" }
-    step { HTTP.post(full_route, payload: payload).then { |response| puts 'success!'; response}.fail { |http| debugger; nil }}
-    step {|response| params.data = response.json }
-  end
-
   def self.init(api_url:, component:, endpoint:, component_name:, passed: nil)
     endpoint ||= 'Self'
     @api_url = api_url
