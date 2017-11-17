@@ -15,7 +15,7 @@ class ContextMapController < ApplicationController
 
   def list
     render_component(**base_params.merge(
-      component_name: 'context_list',
+      component_name: 'context',
       endpoint: 'all',
     ))    
   end

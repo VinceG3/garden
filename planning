@@ -1,0 +1,29 @@
+What I want right now is top-level contexts
+[ ] The only topics I want showing up on the context list page are top-level
+    Do I need to maintain a lookup table?
+    I should store top-level info on the table
+    def DataWrangler::DocumentTypes::Context.is_top_level?
+        looks for a field
+        if it doesn't find it, calculates and sets field
+    `get 'context_list/all'` calls a DataWrangler function
+        It should call a DataWrangler::DocumentTypes::Context function 
+        This function should then only retrieve top-level records
+[ ] A topic is top-level when it's not part of any other contexts
+[ ] I also want to be able to have multiple topics with the same names, just under different top-level contexts
+[ ] If a top-level context param is not given, it should go to a "disambiguation" page
+[ ] data_wrangler controllers should not be calling DataWrangler methods directly.
+    Needs to be a mapping layer?
+    Route -> Controller -> Model
+    What is a model in DataWrangler?
+    One "model" exists, UrlsToRead
+    Is intended to be a wrapper around Sequel
+    Right now contexts are "unstructured"
+    Need path for unstructured tables to become models
+    What are the steps to turn unstructured tables into models?
+        1 - Make model
+        2 - Make migration
+        3 - Existing app should work
+
+App -> RestResources -> [ DocumentTypes | DataWrangler ]
+Need to make similar API for Unstructured as for Models
+RestResources should not care whether it's backed by a Unstructured Table or a Model

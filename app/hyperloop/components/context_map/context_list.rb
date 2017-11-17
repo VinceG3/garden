@@ -11,9 +11,7 @@ module ContextMap
         Common::TextInput(on_enter: method(:on_new).to_proc)
         ul.context_list do
           params.context_list.list.each do |context|
-            ContextListItem(
-              context: context
-            )
+            ContextListItem(context: context)
           end
         end
       end
